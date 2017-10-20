@@ -41,14 +41,6 @@ class App extends Component {
     return oreoCount;
   }
 
-  getWidth(string, font) {
-
-  }
-
-  changeFontSize(event) {
-    var string = event.target.value;
-  }
-
   render() {
     return (
       <div className="App container vertical">
