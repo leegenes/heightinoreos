@@ -12,6 +12,7 @@ class App extends Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.calc = this.calc.bind(this);
+    this.convertHeight = this.convertHeight.bind(this);
   }
 
   handleEdit(event) {
@@ -22,7 +23,29 @@ class App extends Component {
     });
   }
 
+  convertHeight(){
+    if (this.state.units) {
+      var inches = (this.state.bigHeight * 12) + Number(this.state.smallHeight);
+      var cm = inches * 2.54;
+      var big = Math.floor(cm / 100);
+      var small = Math.round(cm % 100);
+    } else {
+      var cm = (this.state.bigHeight * 100) + Number(this.state.smallHeight);
+      var inches = cm * 0.393701;
+      var big = Math.floor(inches / 12);
+      var small = Math.round(inches % 12);
+    }
+    this.setState({
+      bigHeight: big,
+      smallHeight: small
+    })
+  };
+
   handleToggle() {
+
+
+    var newHeight = this.convertHeight();
+
     this.setState({
       units: !this.state.units
     });
